@@ -17,7 +17,7 @@ const SwaggerConfig = (app) => {
             },
             servers: [
                 {
-                    url: "http://localhost:4000/api",
+                    url: "http://localhost:3000/api",
                     description: "development",
                 },
             ],

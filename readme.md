@@ -65,12 +65,12 @@ This is a **session-based authentication system** built using Express.js and Mon
 The API is documented using Swagger and can be accessed at:
 
 ```
-http://localhost:4000/api-docs
+http://localhost:3000/api-docs
 ```
 
 ### Swagger Overview
 
-- **Base URL**: `http://localhost:4000/api`
+- **Base URL**: `http://localhost:3000/api`
 - **Tags**:
   - `User`: Routes for user authentication and management
   - `Dev`: Developer utilities
