@@ -52,7 +52,7 @@ const UserService = {
         }
     },
     loginOtp: async (userDto) => {
-        const { phone, otp, req } = userDto;
+        const { phone, otp, res, req } = userDto;
         const sms_otp = await redisClient.get("sms_otp");
         if (!sms_otp) {
             return responseFormatter({
@@ -81,7 +81,7 @@ const UserService = {
         });
     },
     loginPassword: async (userDto) => {
-        const { username, password, req } = userDto;
+        const { username, password, res, req } = userDto;
         const user = await UserModel.findOne({ $or: [{ phone: username }, { email: username }] });
         if (!user) {
             return responseFormatter({
@@ -106,7 +106,14 @@ const UserService = {
     emailUpdate: async (userDto) => {
         const { phone, email } = userDto;
         const user = await UserModel.findOne({ phone });
-        if (user) {
+        if (!user) {
+            return responseFormatter({
+                status: 200,
+                message: UserMessage.NotFoundUser
+            });
+        }
+        const isDuplicateEmail = await UserModel.findOne({ email });
+        if (isDuplicateEmail) {
             return responseFormatter({
                 status: 200,
                 message: UserMessage.EmailDuplicate

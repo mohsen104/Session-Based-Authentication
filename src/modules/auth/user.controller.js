@@ -17,7 +17,7 @@ const UserController = {
         try {
             const { phone, otp } = req.body;
             await loginOtpSchema.validateAsync({ phone, otp });
-            const response = await UserService.loginOtp({ phone, otp, req });
+            const response = await UserService.loginOtp({ phone, otp, res, req });
             res.status(200).json(response);
         } catch (error) {
             next(error);
@@ -27,7 +27,7 @@ const UserController = {
         try {
             const { username, password } = req.body;
             await loginPasswordSchema.validateAsync({ username, password });
-            const response = await UserService.loginPassword({ username, password, req });
+            const response = await UserService.loginPassword({ username, password, res, req });
             res.status(200).json(response);
         } catch (error) {
             next(error);
