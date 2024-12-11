@@ -1,6 +1,4 @@
 import crypto from 'crypto';
-import { configDotenv } from 'dotenv';
-configDotenv();
 
 export const loginMethod = (username) => {
     const regexMobile = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/);
